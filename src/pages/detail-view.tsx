@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text, Button, Image } from "react-native";
+import { View, StyleSheet, Text, Button, Image, ScrollView } from "react-native";
 import { PropsWithChildren, useEffect, useState } from "react";
 import { fetchDetailData } from "../utils/fetch-data";
 
@@ -20,8 +20,8 @@ export default function DetailView({ route, navigation }: DetailViewProps) {
   }, []);
 
   return (
-    <View style={styles.containerCard}>
-      {item.media && item.media[0] && <Image source={item?.media[0]} style={styles.img}></Image>}
+    <ScrollView style={styles.containerCard}>
+      {item.media && item.media[0] && <Image source={{uri: item?.media[0]}} style={styles.img}></Image>}
       <Text style={styles.title}>{item?.title}</Text>
       <View style={styles.grid}>
         <Text>Price $: {item?.price}</Text>
@@ -33,7 +33,7 @@ export default function DetailView({ route, navigation }: DetailViewProps) {
         <Text>{item?.user?.name}</Text>
       </View>
       <Button title="Go back" onPress={() => navigation.goBack()} />
-    </View>
+    </ScrollView>
   );
 }
 const styles = StyleSheet.create({

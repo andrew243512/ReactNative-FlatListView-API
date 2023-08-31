@@ -8,14 +8,13 @@ type ListProps = PropsWithChildren<{
 
 export default function ListComponent({ data, navigation }: ListProps) {
   let [item, setItem] = useState(data);
-
   return (
     <View style={styles.containerCard}>
-      <TouchableOpacity onPress={() => navigation.push('Details', {key: item.key})}>
-        <Image source={item.media[0]} style={styles.img}></Image>
-        <Text style={styles.title}>{item.title}</Text>
-        <View style={styles.grid}>
-          <Text>Price $: {item.price}</Text>
+      <TouchableOpacity onPress={() => navigation.push('Details', {key: item?.key})}>
+        <Image source={{uri: item?.media[0]}} style={styles.img}></Image>
+        <Text style={styles.title}>{item?.title}</Text>
+        <View style={styles?.grid}>
+          <Text>Price $: {item?.price}</Text>
           <Text>Cause: {item?.cause?.name}</Text>
         </View>
       </TouchableOpacity>
